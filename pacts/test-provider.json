@@ -4,184 +4,34 @@
   },
   "interactions": [
     {
-      "description": "fetching a person by ID",
-      "providerStates": [
-        {
-          "name": "a person exists",
-          "params": {
-            "id": "1",
-            "name": "Alice"
-          }
-        }
-      ],
+      "description": "visiting /departments",
       "request": {
         "headers": {
           "Accept": "application/vnd.api+json",
           "X-Requested-With": "XMLHttpRequest"
         },
         "method": "GET",
-        "path": "/people/1"
-      },
-      "response": {
-        "body": {
-          "data": {
-            "attributes": {
-              "created-at": "1969-07-20T20:18:04.000Z",
-              "name": "Alice"
-            },
-            "id": "1",
-            "relationships": {
-              "department": {
-                "data": null
-              }
-            },
-            "type": "people"
-          }
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "body": {
-            "$.data.created-at": {
-              "matchers": [
-                {
-                  "match": "regex",
-                  "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
-                }
-              ]
-            }
-          }
-        },
-        "status": 200
-      }
-    },
-    {
-      "description": "listing beds",
-      "providerStates": [
-        {
-          "name": "a bed exists",
-          "params": {
-            "id": "1",
-            "size": "double"
-          }
-        },
-        {
-          "name": "a bed exists",
-          "params": {
-            "id": "2",
-            "size": "queen"
-          }
-        }
-      ],
-      "request": {
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "X-Requested-With": "XMLHttpRequest"
-        },
-        "method": "GET",
-        "path": "/beds"
-      },
-      "response": {
-        "body": {
-          "beds": [
-            {
-              "id": "1",
-              "size": "double"
-            },
-            {
-              "id": "2",
-              "size": "queen"
-            }
-          ]
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "body": {
-          }
-        },
-        "status": 200
-      }
-    },
-    {
-      "description": "listing people",
-      "providerStates": [
-        {
-          "name": "a department exists",
-          "params": {
-            "id": "1",
-            "name": "People"
-          }
-        },
-        {
-          "name": "a person exists",
-          "params": {
-            "departmentId": "1",
-            "id": "1",
-            "name": "Alice"
-          }
-        },
-        {
-          "name": "a person exists",
-          "params": {
-            "departmentId": "1",
-            "id": "2",
-            "name": "Bob"
-          }
-        }
-      ],
-      "request": {
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "X-Requested-With": "XMLHttpRequest"
-        },
-        "method": "GET",
-        "path": "/people"
+        "path": "/departments"
       },
       "response": {
         "body": {
           "data": [
             {
               "attributes": {
-                "created-at": "1969-07-20T20:18:04.000Z",
-                "name": "Alice"
               },
               "id": "1",
-              "relationships": {
-                "department": {
-                  "data": {
-                    "id": "1",
-                    "type": "departments"
-                  }
-                }
-              },
-              "type": "people"
+              "type": "departments"
             },
             {
               "attributes": {
-                "created-at": "1969-07-20T20:18:04.000Z",
-                "name": "Bob"
               },
               "id": "2",
-              "relationships": {
-                "department": {
-                  "data": {
-                    "id": "1",
-                    "type": "departments"
-                  }
-                }
-              },
-              "type": "people"
-            }
-          ],
-          "included": [
+              "type": "departments"
+            },
             {
               "attributes": {
-                "name": "People"
               },
-              "id": "1",
+              "id": "3",
               "type": "departments"
             }
           ]
@@ -189,161 +39,13 @@
         "headers": {
           "Content-Type": "application/json"
         },
-        "matchingRules": {
-          "body": {
-            "$.data[*].created-at": {
-              "matchers": [
-                {
-                  "match": "regex",
-                  "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
-                }
-              ]
-            }
-          }
-        },
-        "status": 200
-      }
-    },
-    {
-      "description": "querying people",
-      "providerStates": [
-        {
-          "name": "a person exists",
-          "params": {
-            "id": "1",
-            "name": "Alice"
-          }
-        },
-        {
-          "name": "a person exists",
-          "params": {
-            "id": "2",
-            "name": "Bob"
-          }
-        }
-      ],
-      "request": {
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "X-Requested-With": "XMLHttpRequest"
-        },
-        "method": "GET",
-        "path": "/people",
-        "query": {
-          "name": [
-            "Bob"
-          ]
-        }
-      },
-      "response": {
-        "body": {
-          "data": [
-            {
-              "attributes": {
-                "created-at": "1969-07-20T20:18:04.000Z",
-                "name": "Bob"
-              },
-              "id": "2",
-              "relationships": {
-                "department": {
-                  "data": null
-                }
-              },
-              "type": "people"
-            }
-          ]
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "body": {
-            "$.data[*].created-at": {
-              "matchers": [
-                {
-                  "match": "regex",
-                  "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
-                }
-              ]
-            }
-          }
-        },
-        "status": 200
-      }
-    },
-    {
-      "description": "updating a person",
-      "providerStates": [
-        {
-          "name": "a person exists",
-          "params": {
-            "id": "1",
-            "name": "Alice"
-          }
-        }
-      ],
-      "request": {
-        "body": {
-          "data": {
-            "attributes": {
-              "created-at": "1969-07-20T20:18:04.000Z",
-              "name": "Alicia"
-            },
-            "id": "1",
-            "relationships": {
-              "department": {
-                "data": null
-              }
-            },
-            "type": "people"
-          }
-        },
-        "headers": {
-          "Accept": "application/vnd.api+json",
-          "Content-Type": "application/vnd.api+json",
-          "X-Requested-With": "XMLHttpRequest"
-        },
-        "method": "PATCH",
-        "path": "/people/1"
-      },
-      "response": {
-        "body": {
-          "data": {
-            "attributes": {
-              "created-at": "1969-07-20T20:18:04.000Z",
-              "name": "Alicia"
-            },
-            "id": "1",
-            "relationships": {
-              "department": {
-                "data": null
-              }
-            },
-            "type": "people"
-          }
-        },
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "matchingRules": {
-          "body": {
-            "$.data.created-at": {
-              "matchers": [
-                {
-                  "match": "regex",
-                  "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"
-                }
-              ]
-            }
-          }
-        },
         "status": 200
       }
     }
   ],
   "metadata": {
     "pact-specification": {
-      "version": "3.0.0"
+      "version": "2.0.0"
     }
   },
   "provider": {

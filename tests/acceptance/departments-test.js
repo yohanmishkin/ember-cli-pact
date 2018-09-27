@@ -6,8 +6,9 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 module('qwer Acceptance | departments', function(hooks) {
   setupApplicationTest(hooks);
-  setupMirage(hooks);
-  setupPact(hooks);
+  setupPact(hooks, {
+    pactVersion: 2
+  });
 
   test('visiting /departments', async function(assert) {
     server.createList('department', 3);

@@ -11,7 +11,7 @@ export default class MockProvider {
     this.config = config;
     this.interaction = null;
     this._uploadCallbacks = [];
-    this._capturing = false;
+    this._capturing = true;
   }
 
   /**

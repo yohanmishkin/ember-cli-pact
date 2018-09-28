@@ -4,7 +4,37 @@
   },
   "interactions": [
     {
-      "description": "visiting /departments",
+      "description": "see beds",
+      "request": {
+        "headers": {
+          "Accept": "application/vnd.api+json",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        "method": "GET",
+        "path": "/beds"
+      },
+      "response": {
+        "body": {
+          "beds": [
+            {
+              "id": "1"
+            },
+            {
+              "id": "2"
+            },
+            {
+              "id": "3"
+            }
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "see departments",
       "request": {
         "headers": {
           "Accept": "application/vnd.api+json",

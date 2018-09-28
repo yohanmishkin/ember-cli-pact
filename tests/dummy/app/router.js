@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('departments');
+  this.route('beds');
 });
 
 export default Router;

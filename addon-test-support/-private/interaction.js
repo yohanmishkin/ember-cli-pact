@@ -14,7 +14,6 @@ export default class Interaction {
   }
 
   recordRequest(request) {
-    assert('Attempted to record multiple requests in a single interaction', !this.captured);
     this.captured = request;
   }
 

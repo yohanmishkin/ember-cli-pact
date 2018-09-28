@@ -10,12 +10,19 @@ module('qwer Acceptance | departments', function(hooks) {
     pactVersion: 2
   });
 
-  test('visiting /departments', async function(assert) {
+  test('see beds', async function(assert) {
+    server.createList('beds', 3);
+
+    await visit('/beds');
+
+    assert.equal(currentURL(), '/beds');
+  });
+
+  test('see departments', async function(assert) {
     server.createList('department', 3);
 
-    await visit('/');
+    await visit('/departments');
 
-    assert.equal(currentURL(), '/');
-    assert.dom('.test-department').exists({ count: 3 });
+    assert.equal(currentURL(), '/departments');
   });
 });
